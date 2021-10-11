@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8"> 
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  </head>
+
+  <body> 
+    <nav class="navbar navbar-default navbar-static-top">
+
+      <div class="container">
+
+	<ul class="nav navbar-nav">
+	  <li class="navbar-brand"><a href="{%url 'index'%}">Index</a></li>
+	  <li class="navbar-link"><a href="{%url 'references:listar-empleados'%}">Listar Empleados</a></li>
+	  <li class="navbar-link"><a href="{%url 'references:ingresar-empleado'%}">Ingresar Empleado</a>
+	  <li class="navbar-link"><a href="{%url 'references:buscar-empleado'%}">Buscar Empleados</a></li>
+	</ul>
+      </div>
+    </nav>
+
+    <!--ACA VA TODO LO QUE DEBERIA IR EN OTRO HTML -->
+    <div class="container">
+      {% block body_block%}
+      <!--Cualquier cosa a fuera de esto sera heradada -->
+      {% endblock %}
+    </div>
+    
+  </body>
+
+  
+  
+</html>
