@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from EmployeeRecord.forms import EmpleadoForm, EditarEmpleado
+from EmployeeRecord.forms import EmpleadoForm
 from EmployeeRecord.models import Empleado
 # Create your views here.
 def index (request):
@@ -14,12 +14,13 @@ def records (request):
     return render(request, 'EmployeeRecord/records.html', context = dic_empleados)
 
 
-#====Vista que conecta el formulario de empleado====
+
+#====Vista que crea nuevo empleado====
 def EnterNewEmployee (request):
     form = EmpleadoForm()
 
     if request.method == "POST":
-        form = nuevoEmpleadoForm(request.POST)
+        form = EmpleadoForm(request.POST)
         #---validando que el formulario sea valido, si lo es
         #---guardar y regresar a index
         if form.is_valid():
@@ -27,12 +28,12 @@ def EnterNewEmployee (request):
             return index(request)
         else:
             raise forms.validationError("Ups! algo ha salido mal, verifica los campos")
-        
     return render(request, 'EmployeeRecord/insert.html', {'formulario':form})
 
 
+#====Vista para editar empleado=======
 def EditEmployee (request, Id):
-    #---obteniendo id de usuario enviado desde el boton "Editar"----
+    #---obteniendo id de empleado enviado desde el boton "Editar"----
     empleado = Empleado.objects.get(id=Id)
     #---Con instance llenamos el formulario con los datos (ID)---
     form = EmpleadoForm(instance = empleado)
@@ -45,10 +46,23 @@ def EditEmployee (request, Id):
             return index(request)
         else:
             print("Ups! algo ha salido mal, verifica los campos")
-    
-
     return render(request,'EmployeeRecord/edit.html', {'formulario':form})
 
 
+#=====Eliminar empleado===========
+def DeleteEmployee (request, Id):
+    #---obteniendo id de empleado enviado desde el boton "Eliminar"---
+    empleado = Empleado.objects.get(id=Id)
+
+    #---eliminar usuario y regresar a index
+    if request.method == 'POST':
+        empleado.delete()
+        return index(request)
+    
+    return render(request, 'EmployeeRecord/delete.html', {'empleado':empleado})
+
+
+
+#========vista para buscar empleado=========
 def SearchEmployee (request):
     return render(request, 'EmployeeRecord/search.html')

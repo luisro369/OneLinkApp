@@ -1,0 +1,19 @@
+<!doctype html>
+{% extends "EmployeeRecord/base.html" %}
+
+{% block body_block %}
+    
+<h1>Esta seguro de eliminar al empleado "{{empleado.Primer_Nombre}} {{empleado.Primer_Apellido}}"</h1>
+
+<form method = "POST">
+
+  {% csrf_token %}
+  <a class="btn btn-sm btn-info" href="{% url 'index' %}">Cancelar </a>
+  
+  <input style="background-color: red" type = "submit" class='btn btn-primary' value = "Eliminar">
+</form>
+
+{% endblock %}
+
+<!-- TODO ACA-->
+    

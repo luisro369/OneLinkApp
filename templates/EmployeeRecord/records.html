@@ -17,6 +17,7 @@
     <li> <b>Unidad Organizativa:</b> {{empleado.Area}}</li>
   </ul>
   <a class="btn btn-sm btn-info" href="{% url 'references:editar-empleado' empleado.id%}">Editar</a>
+  <a style="background-color: red" class="btn btn-sm btn-info" href="{% url 'references:eliminar-empleado' empleado.id%}">Eliminar</a>
   </br>
   </br>
   {% endfor %}

@@ -11,11 +11,3 @@ class EmpleadoForm(forms.ModelForm):
         fields = '__all__'
 
 
-#==========Creando formulario para edicion de empleado=======
-
-
-class EditarEmpleado (forms.ModelForm):
-
-    class Meta():
-        model = Empleado
-        fields = '__all__'
