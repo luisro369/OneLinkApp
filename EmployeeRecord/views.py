@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from EmployeeRecord.forms import nuevoEmpleadoForm
+from EmployeeRecord.forms import EmpleadoForm, EditarEmpleado
 from EmployeeRecord.models import Empleado
 # Create your views here.
 def index (request):
@@ -16,7 +16,7 @@ def records (request):
 
 #====Vista que conecta el formulario de empleado====
 def EnterNewEmployee (request):
-    form = nuevoEmpleadoForm()
+    form = EmpleadoForm()
 
     if request.method == "POST":
         form = nuevoEmpleadoForm(request.POST)
@@ -31,8 +31,23 @@ def EnterNewEmployee (request):
     return render(request, 'EmployeeRecord/insert.html', {'formulario':form})
 
 
-def EditEmployee (request):
-    return render(request, 'EmployeeRecord/edit.html')
+def EditEmployee (request, Id):
+    #---obteniendo id de usuario enviado desde el boton "Editar"----
+    empleado = Empleado.objects.get(id=Id)
+    #---Con instance llenamos el formulario con los datos (ID)---
+    form = EmpleadoForm(instance = empleado)
+
+    #---guardar cambios y regresar a index
+    if request.method == 'POST':
+        form = EmpleadoForm(request.POST, instance = empleado)
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print("Ups! algo ha salido mal, verifica los campos")
+    
+
+    return render(request,'EmployeeRecord/edit.html', {'formulario':form})
 
 
 def SearchEmployee (request):

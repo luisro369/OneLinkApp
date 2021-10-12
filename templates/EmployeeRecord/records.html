@@ -16,9 +16,7 @@
     <li> <b># Documento:</b> {{empleado.Documento}}</li>
     <li> <b>Unidad Organizativa:</b> {{empleado.Area}}</li>
   </ul>
-  <a href="{%url 'references:editar-empleado'%}">
-    <input class = "btn primary-btn" type = "button" value="Editar empleado"/>
-  </a>
+  <a class="btn btn-sm btn-info" href="{% url 'references:editar-empleado' empleado.id%}">Editar</a>
   </br>
   </br>
   {% endfor %}

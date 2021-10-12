@@ -9,6 +9,6 @@ urlpatterns = [
     path('records', views.records, name="listar-empleados"),
     path('insert', views.EnterNewEmployee, name="ingresar-empleado"),
     path('search', views.SearchEmployee, name="buscar-empleado"),
-    path('edit', views.EditEmployee, name="editar-empleado"),
+    path('edit/<str:Id>', views.EditEmployee, name="editar-empleado"),
     ]
 
