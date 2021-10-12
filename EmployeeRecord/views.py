@@ -65,4 +65,32 @@ def DeleteEmployee (request, Id):
 
 #========vista para buscar empleado=========
 def SearchEmployee (request):
-    return render(request, 'EmployeeRecord/search.html')
+    busqueda = ""
+    consulta = ""
+    diccionario_contexto = {}
+    lista_consultas = ['Primer_Nombre__contains = busqueda','Segundo_Nombre__contains = busqueda','Primer_Apellido__contains = busqueda','Segundo_Apellido__contains = busqueda', 'Documento__contains = busqueda']
+    if request.method == "POST":
+        #---obteniendo lo ingresado en barra de busqueda---
+        busqueda = request.POST['search_bar']
+        #---Extrayendo nombre ingresados y comparando con query a base de datos
+        if  Empleado.objects.filter(Primer_Nombre__contains = busqueda):
+            consulta = Empleado.objects.filter(Primer_Nombre__contains = busqueda)
+            
+        elif  Empleado.objects.filter(Segundo_Nombre__contains = busqueda):
+            consulta = Empleado.objects.filter(Segundo_Nombre__contains = busqueda)
+            
+        elif  Empleado.objects.filter(Primer_Apellido__contains = busqueda):
+            consulta = Empleado.objects.filter(Primer_Apellido__contains = busqueda)
+            
+        elif  Empleado.objects.filter(Segundo_Apellido__contains = busqueda):
+            consulta = Empleado.objects.filter(Segundo_Apellido__contains = busqueda)
+            
+        elif  Empleado.objects.filter(Documento__contains = busqueda):
+            consulta = Empleado.objects.filter(Documento__contains = busqueda)
+           
+        else:
+            consulta = None
+            print("No encontrado")
+        
+        diccionario_contexto = {'busqueda':busqueda, 'Consulta':consulta}
+    return render(request, 'EmployeeRecord/search.html', context = diccionario_contexto)

@@ -3,7 +3,34 @@
 
 {% block body_block %}
     
-<h1>Bienvenido a Search empl</h1>
+<h1>Buscar empleado</h1>
+
+<form class="d-flex" method="POST">
+  
+  {% csrf_token %}
+  <input name="search_bar" class="form-control" type="search" placeholder="Buscar por Nombre o Documento">
+  </br>
+  <button class="btn btn-primary" type="submit">Buscar</button>
+
+  </br>
+
+  {% if busqueda and Consulta %}
+  <h1>Usted busco por "{{busqueda}}"</h1>
+  <h2> Empleados que califican a su busqueda: </h2>
+
+  {% for item in Consulta %}
+  <h3> {{item.Primer_Nombre}} - {{item.Primer_Apellido}} - {{item.Documento}} </h3>
+  {% endfor %}
+
+  
+  {% else %}
+  <h2 id="elemento_no_encontrado" > Lo sentimos... ningun elemento figura con su busqueda </h2>
+  {% endif %}
+
+
+  
+
+</form>
 
 {% endblock %}
 

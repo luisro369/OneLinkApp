@@ -19,6 +19,6 @@ from django.urls import path, include
 from EmployeeRecord import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Employees/', include('EmployeeRecord.urls')),
+    path('Employee/', include('EmployeeRecord.urls')),
     path('', views.index, name='index'),
 ]
