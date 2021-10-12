@@ -3,7 +3,27 @@
 
 {% block body_block %}
     
-<h1>Bienvenido a Listar empl</h1>
+<h1>Empleados registrados:</h1>
+
+{% if empleados %}
+<ol>
+  
+  {% for empleado in empleados %}
+  <li> Informacion del empleado </li>
+  <ul>
+    <li> <b>Nombre Completo:</b> {{empleado.Primer_Nombre}} {{empleado.Segundo_Nombre}} {{empleado.Primer_Apellido}} {{empleado.Segundo_Apellido}}</li>
+    <li> <b>Tipo de documento:</b> {{empleado.Tipo_Documento}}</li>
+    <li> <b># Documento:</b> {{empleado.Documento}}</li>
+    <li> <b>Unidad Organizativa:</b> {{empleado.Area}}</li>
+  </ul>
+  <a href="{%url 'references:editar-empleado'%}">
+    <input class = "btn primary-btn" type = "button" value="Editar empleado"/>
+  </a>
+  </br>
+  </br>
+  {% endfor %}
+</ol>
+{% endif %}
 
 {% endblock %}
 
