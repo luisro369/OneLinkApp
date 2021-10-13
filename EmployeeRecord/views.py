@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q
+from django import forms
 
 from EmployeeRecord.forms import EmpleadoForm
 from EmployeeRecord.models import Empleado
@@ -27,8 +28,7 @@ def EnterNewEmployee (request):
         if form.is_valid():
             form.save(commit=True)
             return index(request)
-        else:
-            raise forms.validationError("Ups! algo ha salido mal, verifica los campos")
+        
     return render(request, 'EmployeeRecord/insert.html', {'formulario':form})
 
 

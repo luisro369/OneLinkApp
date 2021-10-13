@@ -5,21 +5,20 @@ from django.db import models
 #=========Creando un modelo en SQL lite de la tabla empleado==========
 
 class Empleado (models.Model):
-    Primer_Nombre = models.CharField(max_length = 264, unique = False)
-    Segundo_Nombre = models.CharField(max_length = 264, unique = False)
-    Primer_Apellido = models.CharField(max_length = 264, unique = False)
-    Segundo_Apellido = models.CharField(max_length = 264, unique = False)
+    Primer_Nombre = models.CharField(max_length = 30, unique = False)
+    Segundo_Nombre = models.CharField(max_length = 30, unique = False)
+    Primer_Apellido = models.CharField(max_length = 30, unique = False)
+    Segundo_Apellido = models.CharField(max_length = 30, unique = False)
 
 
     
     TIPO_DOCUMENTO_ELECCIONES = [
         ('DUI', 'Dui'),
         ('NIT', 'Nit'),
-        ('PASAPORTE', 'Pasaporte'),
     ]
     
-    Tipo_Documento = models.CharField(max_length = 264, choices = TIPO_DOCUMENTO_ELECCIONES, unique = False)
-    Documento = models.CharField(max_length = 264, unique = True)
+    Tipo_Documento = models.CharField(max_length = 10, choices = TIPO_DOCUMENTO_ELECCIONES, unique = False)
+    Documento = models.CharField(max_length = 15, unique = True)
     
     
     AREA_ELECCIONES = [
@@ -43,7 +42,7 @@ class Empleado (models.Model):
         ),
     ]
 
-    Area = models.CharField(max_length = 264, choices = AREA_ELECCIONES, unique = False)
+    Area = models.CharField(max_length = 30, choices = AREA_ELECCIONES, unique = False)
 
     ##======Metodo para debuggear la clase Empleado======
     def __str__(self):
