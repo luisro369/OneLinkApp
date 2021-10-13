@@ -45,8 +45,6 @@ def EditEmployee (request, Id):
         if form.is_valid():
             form.save(commit=True)
             return index(request)
-        else:
-            print("Ups! algo ha salido mal, verifica los campos")
     return render(request,'EmployeeRecord/edit.html', {'formulario':form})
 
 
