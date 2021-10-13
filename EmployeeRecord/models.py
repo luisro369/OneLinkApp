@@ -48,3 +48,4 @@ class Empleado (models.Model):
     ##======Metodo para debuggear la clase Empleado======
     def __str__(self):
         return self.Primer_Nombre
+    

@@ -8,7 +8,8 @@
 <form method = "POST">
   {{formulario.as_p}}
   {% csrf_token %}
-  <input type = "submit" class='btn btn-primary' value = "Modificar">
+  <input type = "submit" class="btn btn-sm btn-info" value = "Modificar">
+  <a style="background-color:red" class="btn btn-sm btn-info" href="{% url 'index' %}">Cancelar </a>
 </form>
 
 {% endblock %}

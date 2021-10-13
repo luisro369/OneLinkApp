@@ -18,13 +18,35 @@
   <h1>Usted busco por "{{busqueda}}"</h1>
   <h2> Empleados que califican a su busqueda: </h2>
 
-  {% for item in Consulta %}
-  <h3> {{item.Primer_Nombre}} - {{item.Primer_Apellido}} - {{item.Documento}} </h3>
-  {% endfor %}
+  </br>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+	<th scope="col">Nombre completo</th>
+	<th scope="col">Tipo de documento</th>
+	<th scope="col">Documento</th>
+	<th scope="col">Unidad Organizativa</th>
+	<th scope="col">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in Consulta %}
 
+      <tr>
+	<td>{{item.Primer_Nombre}} {{item.Segundo_Nombre}} {{item.Primer_Apellido}} {{item.Segundo_Apellido}}</td>
+	<td>{{item.Tipo_Documento}}</td>
+	<td>{{item.Documento}}</td>
+	<td>{{item.Area}}</td>
+  
+      <td><a class="btn btn-sm btn-info" href="{% url 'references:editar-empleado' item.id%}">Editar</a>
+      <a style="background-color: red" class="btn btn-sm btn-info" href="{% url 'references:eliminar-empleado' item.id%}">Eliminar</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
   
   {% else %}
-  <h2 id="elemento_no_encontrado" > Lo sentimos... ningun elemento figura con su busqueda </h2>
+  <h2 id="elemento_no_encontrado" > Ningun elemento encontrado </h2>
   {% endif %}
 
 
