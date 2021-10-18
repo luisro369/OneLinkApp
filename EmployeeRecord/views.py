@@ -72,11 +72,11 @@ def SearchEmployee (request):
         #---obteniendo lo ingresado en barra de busqueda---
         busqueda = request.POST['search_bar']
         #---Extrayendo nombre ingresados y comparando con query a base de datos
-        consulta = Empleado.objects.filter(Q(Primer_Nombre__contains = busqueda) |
-                                           Q(Segundo_Nombre__contains = busqueda) |
-                                           Q(Primer_Apellido__contains = busqueda) |
-                                           Q(Segundo_Apellido__contains = busqueda) |
-                                           Q(Documento__contains = busqueda))
+        consulta = Empleado.objects.filter(Q(Primer_Nombre__iexact = busqueda) |
+                                           Q(Segundo_Nombre__iexact = busqueda) |
+                                           Q(Primer_Apellido__iexact = busqueda) |
+                                           Q(Segundo_Apellido__iexact = busqueda) |
+                                           Q(Documento__iexact = busqueda))
         
         diccionario_contexto = {'busqueda':busqueda, 'Consulta':consulta}
     return render(request, 'EmployeeRecord/search.html', context = diccionario_contexto)

@@ -44,7 +44,8 @@ class Empleado (models.Model):
 
     Area = models.CharField(max_length = 30, choices = AREA_ELECCIONES, unique = False)
 
-    ##======Metodo para debuggear la clase Empleado======
+    ##======Method to debugg class======
     def __str__(self):
         return self.Primer_Nombre
+
     
