@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Q
 from django import forms
+from django.contrib import messages
 
 from EmployeeRecord.forms import EmpleadoForm
 from EmployeeRecord.models import Empleado
@@ -26,8 +27,13 @@ def EnterNewEmployee (request):
         #---validando que el formulario sea valido, si lo es
         #---guardar y regresar a index
         if form.is_valid():
-            form.save(commit=True)
-            return index(request)
+            try:
+                form.save(commit=True)
+                messages.success(request, 'Usuario ingresado Correctamente!')
+                return index(request)
+            except Exception as e:
+                messages.error(request,e)
+                return index(request)
         
     return render(request, 'EmployeeRecord/insert.html', {'formulario':form})
 
@@ -42,9 +48,16 @@ def EditEmployee (request, Id):
     #---guardar cambios y regresar a index
     if request.method == 'POST':
         form = EmpleadoForm(request.POST, instance = empleado)
+
         if form.is_valid():
-            form.save(commit=True)
-            return index(request)
+            try:
+                form.save(commit=True)
+                messages.success(request, 'Usuario modificado Correctamente!')
+                return index(request)
+            except Exception as e:
+                messages.error(request,e)
+                return index(request)
+            
     return render(request,'EmployeeRecord/edit.html', {'formulario':form})
 
 
@@ -55,8 +68,13 @@ def DeleteEmployee (request, Id):
 
     #---eliminar usuario y regresar a index
     if request.method == 'POST':
-        empleado.delete()
-        return index(request)
+        try:
+            empleado.delete()
+            messages.success(request, 'Usuario eliminado correctamente')
+            return index(request)
+        except Exception as e:
+            messages.error(request,'Algo salio mal, por favor intentalo de nuevo')
+            return index(request)
     
     return render(request, 'EmployeeRecord/delete.html', {'empleado':empleado})
 
@@ -77,6 +95,10 @@ def SearchEmployee (request):
                                            Q(Primer_Apellido__iexact = busqueda) |
                                            Q(Segundo_Apellido__iexact = busqueda) |
                                            Q(Documento__iexact = busqueda))
-        
+        #print(dir(consulta))
+        if len(consulta) > 0:
+            messages.success(request, 'Usuarios encontrados')
+        else:
+            messages.error(request, 'Usuarios no encontrados')
         diccionario_contexto = {'busqueda':busqueda, 'Consulta':consulta}
     return render(request, 'EmployeeRecord/search.html', context = diccionario_contexto)

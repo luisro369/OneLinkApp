@@ -90,7 +90,7 @@ DATABASES = {
         'NAME' : 'onelink',
         'USER' : 'postgres',
         'PASSWORD' : 'admin',
-        'HOST' : '192.168.20.10',
+        'HOST' : '192.168.1.19',
         'PORT' : '5432',
     }#default
 }#Connection to the postgresql database
@@ -142,3 +142,16 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#=============Diccionario para mensajes de alerta==========
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}

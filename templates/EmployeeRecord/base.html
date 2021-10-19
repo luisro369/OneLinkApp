@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
 <html>
-
   <head>
+    {% load static %}
     <meta charset="utf-8"> 
     <title></title>
+    <!-- ---------------Agregando BootStrap------------------------ -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   </head>
 
@@ -25,6 +26,7 @@
 
     <!--ACA VA TODO LO QUE DEBERIA IR EN OTRO HTML -->
     <div class="container">
+      {% include 'EmployeeRecord/messages.html'  %}
       {% block body_block%}
       <!--Cualquier cosa a fuera de esto sera heradada -->
       {% endblock %}
@@ -32,6 +34,10 @@
     
   </body>
 
+  
+<!-- ---------------SCRIPTS------------------------ -->
+    <!-- mensajes a usuario -->
+    <script src="{% static 'js/messages.js'%}"></script>
   
   
 </html>

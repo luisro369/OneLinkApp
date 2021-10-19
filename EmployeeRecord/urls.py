@@ -11,5 +11,5 @@ urlpatterns = [
     path('search', views.SearchEmployee, name="buscar-empleado"),
     path('edit/<str:Id>', views.EditEmployee, name="editar-empleado"),
     path('delete/<str:Id>', views.DeleteEmployee, name="eliminar-empleado"),
-    ]
+   ]
 

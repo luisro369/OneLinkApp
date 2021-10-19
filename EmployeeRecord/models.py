@@ -18,7 +18,7 @@ class Empleado (models.Model):
     ]
     
     Tipo_Documento = models.CharField(max_length = 10, choices = TIPO_DOCUMENTO_ELECCIONES, unique = False)
-    Documento = models.CharField(max_length = 15, unique = True)
+    Documento = models.CharField(max_length = 14, unique = True)
     
     
     AREA_ELECCIONES = [

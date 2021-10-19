@@ -31,7 +31,6 @@
     </thead>
     <tbody>
       {% for item in Consulta %}
-
       <tr>
 	<td>{{item.Primer_Nombre}} {{item.Segundo_Nombre}} {{item.Primer_Apellido}} {{item.Segundo_Apellido}}</td>
 	<td>{{item.Tipo_Documento}}</td>
@@ -45,8 +44,6 @@
     </tbody>
   </table>
   
-  {% else %}
-  <h2 id="elemento_no_encontrado" > Ningun elemento encontrado </h2>
   {% endif %}
 
 
