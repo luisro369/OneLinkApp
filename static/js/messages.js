@@ -1,15 +1,15 @@
 //Funcion destinada a hacer desaparecer los mensajes de 'success' y 'error'
 
-var message = document.getElementById('msg');
+var message = document.getElementById('mensaje');
 console.log(message);
 
 setTimeout(function(){
-    if(message.length > 0){
-	console.log("entroooooooo");
+    console.log(message.length)
+    if(message.innerHTML.length > 0){
 	message.remove();
     }//if
     else{
-	console.log("entro al else");
+	console.log("Problemas detectando el mensaje");
     }
-},5000);//desaparecer despues de 5 segundos
+},3000);//desaparecer despues de 5 segundos
 
